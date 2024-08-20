@@ -5,7 +5,18 @@ export default {
     './resources/views/**/*.blade.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth:{
+        "1140" : "1140px",
+        "420": "420px",
+      },
+      colors: {
+        "blue-2": "#0123ee",
+        "green-2": "#008000",
+        "gray": "#808080"
+      },
+    },
+    
   },
   plugins: [],
 }
