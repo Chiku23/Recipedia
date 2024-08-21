@@ -1,1 +1,1 @@
-Site Footer
+<div class="max-w-1140 text-center mx-auto">Site Footer</div>
