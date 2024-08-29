@@ -19,7 +19,7 @@ $strSpanClass = "absolute w-0 h-full group-hover:w-full bg-transparent group-hov
                         <span class="{{$strSpanClass}}"></span></a>
                     <a href="{{Route('login')}}" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Login</span>  <span class="{{$strSpanClass}}"></span></a>
-                    <a href="/" class="{{$strNavItemClass}}">
+                    <a href="{{Route('register')}}" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Register</span>  
                         <span class="{{$strSpanClass}}"></span></a>
                     <a href="/" class="{{$strNavItemClass}}">

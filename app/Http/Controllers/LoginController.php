@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,16 @@ class LoginController extends Controller
             'password.required' => "Password can not be blank."
         ]
     );
+    // Attempt to log the user in
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Authentication passed, redirect to the intended page
+        return redirect()->route('home')->with('success', 'Welcome!');
+    }
+
+    // If authentication fails, redirect back with an error message
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->withInput($request->only('email'));
 
     }
 }
