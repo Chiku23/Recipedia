@@ -1,6 +1,7 @@
 @php
 $strNavItemClass = "navitem block uppercase font-bold text-xl mx-2 relative p-2 group";
 $strSpanClass = "absolute w-0 h-full group-hover:w-full bg-transparent group-hover:bg-blue-500 duration-300 ease-in-out top-0 left-0 z-0";
+$strSpanClassRed = "absolute w-0 h-full group-hover:w-full bg-transparent group-hover:bg-red-500 duration-300 ease-in-out top-0 left-0 z-0";
 @endphp
 
 <header class="bg-slate-200">
@@ -11,11 +12,11 @@ $strSpanClass = "absolute w-0 h-full group-hover:w-full bg-transparent group-hov
                     <a href="/" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Home</span> 
                         <span class="{{$strSpanClass}}"></span></a>
-                    <a href="/" class="{{$strNavItemClass}}">
+                    <a href="{{Route('about')}}" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">About</span> 
                         <span class="{{$strSpanClass}}"></span></a>
-                    <a href="/" class="{{$strNavItemClass}}">
-                        <span class="z-10 relative">Recipies</span>
+                    <a href="{{Route('recipes')}}" class="{{$strNavItemClass}}">
+                        <span class="z-10 relative">Recipes</span>
                         <span class="{{$strSpanClass}}"></span></a>
                     <a href="{{Route('login')}}" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Login</span>  <span class="{{$strSpanClass}}"></span></a>
@@ -24,7 +25,7 @@ $strSpanClass = "absolute w-0 h-full group-hover:w-full bg-transparent group-hov
                         <span class="{{$strSpanClass}}"></span></a>
                     <a href="/" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Logout</span>  
-                        <span class="{{$strSpanClass}}"></span></a>
+                        <span class="{{$strSpanClassRed}}"></span></a>
                 </div>
             </div>
         </div>
