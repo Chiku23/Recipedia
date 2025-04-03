@@ -16,19 +16,25 @@ class LoginController extends Controller
     public function loginUser(Request $request){
         // dd($request->email, $request->password);
         $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ],
-        [
-            'email.required' => "Email can not be blank.",
-            'email.email' => "Please enter a valid email.",
-            'password.required' => "Password can not be blank."
-        ]
-    );
+                'email' => 'required|email',
+                'password' => 'required'
+            ],
+            [
+                'email.required' => "Email can not be blank.",
+                'email.email' => "Please enter a valid email.",
+                'password.required' => "Password can not be blank."
+            ]
+        );
     // Attempt to log the user in
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $user = Auth::user();
+        $user = $user->toArray();
+        session()->put('user', [
+            'name' => $user['name'],
+            'email' => $user['email'],
+        ]);
         // Authentication passed, redirect to the intended page
-        return redirect()->route('home')->with('success', 'Welcome!');
+        return redirect()->route('home');
     }
 
     // If authentication fails, redirect back with an error message
@@ -36,5 +42,10 @@ class LoginController extends Controller
         'email' => 'The provided credentials do not match our records.',
     ])->withInput($request->only('email'));
 
+    }
+    public function logout(){
+        session()->forget('user');
+        Auth::logout();
+        return redirect('/');
     }
 }

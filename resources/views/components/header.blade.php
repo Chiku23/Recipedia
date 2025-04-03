@@ -18,14 +18,20 @@ $strSpanClassRed = "absolute w-0 h-full group-hover:w-full bg-transparent group-
                     <a href="{{Route('recipes')}}" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Recipes</span>
                         <span class="{{$strSpanClass}}"></span></a>
-                    <a href="{{Route('login')}}" class="{{$strNavItemClass}}">
-                        <span class="z-10 relative">Login</span>  <span class="{{$strSpanClass}}"></span></a>
-                    <a href="{{Route('register')}}" class="{{$strNavItemClass}}">
-                        <span class="z-10 relative">Register</span>  
-                        <span class="{{$strSpanClass}}"></span></a>
-                    <a href="/" class="{{$strNavItemClass}}">
-                        <span class="z-10 relative">Logout</span>  
-                        <span class="{{$strSpanClassRed}}"></span></a>
+                    @if (Auth::check())
+                        <a href="{{Route('logout')}}" class="{{$strNavItemClass}}">
+                            <span class="z-10 relative">Logout</span>  
+                            <span class="{{$strSpanClassRed}}"></span>
+                        </a>
+                    @else
+                        <a href="{{Route('login')}}" class="{{$strNavItemClass}}">
+                            <span class="z-10 relative">Login</span>  <span class="{{$strSpanClass}}"></span>
+                        </a>
+                        <a href="{{Route('register')}}" class="{{$strNavItemClass}}">
+                            <span class="z-10 relative">Register</span>  
+                            <span class="{{$strSpanClass}}"></span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

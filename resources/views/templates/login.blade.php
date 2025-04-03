@@ -11,7 +11,7 @@ $strInputClass = "bg-transparent block w-full p-2 text-gray-900 border border-gr
     </div>
 @endif
 
-<div class="loginWrapper !mt-12">
+<div class="loginWrapper !mt-12 w-full">
     <div class="loginMain flex">
         <div class="loginLeft w-1/2 text-6xl uppercase font-bold tracking-[3px] flex justify-center items-center">
         </div>

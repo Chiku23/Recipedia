@@ -8,10 +8,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link rel="icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     </head>
-    <body class="font-mono text-black bg-white">
+    <body class="flex flex-col font-mono text-black bg-white min-h-screen">
         @include('components.header')
 
-        <div class="main max-w-1140 mx-auto">
+        <div class="main flex flex-grow w-full mx-auto max-w-1140 mx-auto">
             @yield('content')
         </div>
 

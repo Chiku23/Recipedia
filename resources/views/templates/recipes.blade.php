@@ -2,15 +2,41 @@
 
 @section('content')
 @php
-
+    $user = session('user') ?? [];
 @endphp
 
-<div class="recipiesWrapper">
-    <div class="AddNewRecipe m-4 flex items-center">
-        Have Some Recipes In Mind...? Add here... <button id="addRecipe" class="ml-2 h-8 w-8 text-center inline-flex justify-center bg-green-500 text-3xl text-white items-center">+</button>
-    </div>
+<div class="recipiesWrapper w-full">
+    @if(!empty($user))
+        <div class="AddNewRecipe m-4 flex items-center">
+            Have Some Recipes In Mind...? Add here... <button id="addRecipe" class="ml-2 h-8 w-8 text-center inline-flex justify-center bg-green-500 text-3xl text-white items-center">+</button>
+        </div>
+    @endif
     <div class="Recipes shadow-lg p-4">
-        All Recipies Will be Listed Here... Stay Tuned...!!!
+        
+        @if(!empty($allrecipes->isNotEmpty()))
+                    @foreach($allrecipes as $recipe)
+                        <div class="Reciepes flex flex-col sm:flex-row my-4 p-4 bg-gray-800 rounded gap-2">
+                            <div class="contentBox w-full sm:w-[75%] sm:pt-2">
+                                <div class="BlogTitle mb-2 pb-2 text-2xl border-b border-slate-500 font-bold">
+                                    {{$recipe->title}}
+                                </div>
+                                <div class="BlogDescription`">
+                                    {!! $recipe->description !!}
+                                </div>
+                                <div class="BlogDescription">
+                                    {!! $recipe->ingredients !!}
+                                </div>
+                                <div class="BlogDescription">
+                                    {!! $recipe->instructions !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="noReciepes flex my-4 p-4 bg-gray-800 rounded">
+                        All Recipies Will be Listed Here... Stay Tuned...!!!
+                    </div>
+                @endif
     </div>
 </div>
 @php
@@ -22,7 +48,7 @@ $strInputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gr
             <span class="font-bold uppercase">Add Recipe Form </span>
             <button title="Close Form" class="closeForm h-8 w-8 text-center inline-flex justify-center bg-red-500 text-3xl text-white items-center absolute right-5">x</button>
         </div>
-        <form action="" method="" class="w-full">
+        <form action="{{route('processRecipeForm')}}" method="post" class="w-full">
             @csrf
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Recipe Title</label>

@@ -5,7 +5,7 @@
 $strInputClass = "bg-transparent block w-full p-2 text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out";
 @endphp
 
-<div class="registerWrapper !mt-12">
+<div class="registerWrapper !mt-12 w-full">
     <div class="registerMain flex">
         <div class="registerLeft w-1/2 text-6xl uppercase font-bold tracking-[3px] flex justify-center items-center">
         </div>
