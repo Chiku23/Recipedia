@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="mt-4 text-center text-gray-400">
-            <p>&copy; 2024 Recipedia. All rights reserved.</p>
+            <p>&copy; 2025 Recipedia. All rights reserved.</p>
         </div>
     </div>
 </footer>

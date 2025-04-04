@@ -1,6 +1,7 @@
 @extends("layout.app")
 
 @section("content")
+<div class="HomeWrapper flex flex-col w-full">
     @php 
         $userName = '';
         $user = session('user') ?? [];
@@ -16,4 +17,5 @@
     <div class="HomeContainer text-center">
         HomePage
     </div>
+</div>
 @endsection

@@ -15,7 +15,7 @@
         
         @if(!empty($allrecipes->isNotEmpty()))
                     @foreach($allrecipes as $recipe)
-                        <div class="Reciepes flex flex-col sm:flex-row my-4 p-4 bg-gray-800 rounded gap-2">
+                        <div class="Reciepes flex flex-col sm:flex-row my-4 p-4 bg-gray-100 rounded gap-2">
                             <div class="contentBox w-full sm:w-[75%] sm:pt-2">
                                 <div class="BlogTitle mb-2 pb-2 text-2xl border-b border-slate-500 font-bold">
                                     {{$recipe->title}}
@@ -41,33 +41,37 @@
 </div>
 @php
 $strInputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+$strEditorClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline !h-48 bg-white editorInput";
 @endphp
 <div class="RecipeFormPopUpOuter h-full w-full fixed z-10 inset-0 py-4 bg-slate-400 hidden">
-    <div class="recipeForm relative w-1/2 mx-auto  h-full overflow-auto">
+    <div class="recipeForm relative w-1/2 mx-auto h-[90%] my-auto overflow-y-auto overflow-x-hidden scrollbar-custom">
         <div class="formTitle text-2xl text-center relative">
-            <span class="font-bold uppercase">Add Recipe Form </span>
+            <span class="font-bold uppercase">Add Recipe</span>
             <button title="Close Form" class="closeForm h-8 w-8 text-center inline-flex justify-center bg-red-500 text-3xl text-white items-center absolute right-5">x</button>
         </div>
         <form action="{{route('processRecipeForm')}}" method="post" class="w-full">
             @csrf
             <div class="mb-4">
-                <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Recipe Title</label>
+                <label for="title" class="block text-black text-md font-bold mb-2">Recipe Title</label>
                 <input type="text" name="title" id="title" class="{{$strInputClass}}" required>
             </div>
 
             <div class="mb-4">
-                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                <textarea name="description" id="description" class="{{$strInputClass}}" rows="4" required></textarea>
+                <label for="description" class="block text-black text-md font-bold mb-2">Description</label>
+                <div id="description" class="{{$strEditorClass}}"></div>
+                <input type="hidden" name="description" id="descriptionHidden" />
             </div>
 
             <div class="mb-4">
-                <label for="ingredients" class="block text-gray-700 text-sm font-bold mb-2">Ingredients</label>
-                <textarea name="ingredients" id="ingredients" class="{{$strInputClass}}" rows="4" required></textarea>
+                <label for="ingredients" class="block text-black text-md font-bold mb-2">Ingredients</label>
+                <div id="ingredients" class="{{$strEditorClass}}"></div>
+                <input type="hidden" name="description" id="ingredientsHidden" />
             </div>
 
             <div class="mb-4">
-                <label for="instructions" class="block text-gray-700 text-sm font-bold mb-2">Instructions</label>
-                <textarea name="instructions" id="instructions" class="{{$strInputClass}}" rows="4" required></textarea>
+                <label for="instructions" class="block text-black text-md font-bold mb-2">Instructions</label>
+                <div id="instructions" class="{{$strEditorClass}}"></div>
+                <input type="hidden" name="description" id="instructionsHidden" />
             </div>
 
             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
@@ -78,4 +82,25 @@ $strInputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gr
         </form>
     </div>
 </div>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const editors = document.querySelectorAll('.editorInput');
+        const EditorInstances = {};
+        editors.forEach(editor => {
+            const quill = new Quill('#'+editor.id, {
+                theme: 'snow',
+            })
+            EditorInstances[editor.id] = quill;
+        });
+        document.querySelector('form').onsubmit = function() {
+            for (const editorId in EditorInstances) {
+                const hiddenInput = document.getElementById(`${editorId}Hidden`);
+                if (hiddenInput) {
+                    hiddenInput.value = EditorInstances[editorId].getData();
+                }
+            }
+        };
+    });
+</script>
 @endsection
