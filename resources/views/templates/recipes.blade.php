@@ -33,7 +33,7 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="noReciepes flex my-4 p-4 bg-gray-800 rounded">
+                    <div class="noReciepes flex my-4 p-4 rounded">
                         All Recipies Will be Listed Here... Stay Tuned...!!!
                     </div>
                 @endif
@@ -65,13 +65,13 @@ $strEditorClass = "shadow appearance-none border rounded w-full py-2 px-3 text-g
             <div class="mb-4">
                 <label for="ingredients" class="block text-black text-md font-bold mb-2">Ingredients</label>
                 <div id="ingredients" class="{{$strEditorClass}}"></div>
-                <input type="hidden" name="description" id="ingredientsHidden" />
+                <input type="hidden" name="ingredients" id="ingredientsHidden" />
             </div>
 
             <div class="mb-4">
                 <label for="instructions" class="block text-black text-md font-bold mb-2">Instructions</label>
                 <div id="instructions" class="{{$strEditorClass}}"></div>
-                <input type="hidden" name="description" id="instructionsHidden" />
+                <input type="hidden" name="instructions" id="instructionsHidden" />
             </div>
 
             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
@@ -93,11 +93,11 @@ $strEditorClass = "shadow appearance-none border rounded w-full py-2 px-3 text-g
             })
             EditorInstances[editor.id] = quill;
         });
-        document.querySelector('form').onsubmit = function() {
+        document.querySelector('.recipeForm').onsubmit = function() {
             for (const editorId in EditorInstances) {
                 const hiddenInput = document.getElementById(`${editorId}Hidden`);
                 if (hiddenInput) {
-                    hiddenInput.value = EditorInstances[editorId].getData();
+                    hiddenInput.value = EditorInstances[editorId].root.innerHTML;
                 }
             }
         };
