@@ -5,10 +5,10 @@ $strSpanClassRed = "absolute w-0 h-full group-hover:w-full bg-transparent group-
 @endphp
 
 <header class="bg-slate-200">
-    <div class="HeaderWrapper flex justify-between max-w-1140 mx-auto items-center min-h-24">
+    <div class="HeaderWrapper flex flex-col flex-col-reverse sm:flex-row justify-between max-w-1140 mx-auto items-center min-h-24">
         <div class="HeaderLeft">
             <div class="Navbar flex w-full">
-                <div class="NavItems flex flex-row">
+                <div class="NavItems flex flex-col sm:flex-row">
                     <a href="/" class="{{$strNavItemClass}}">
                         <span class="z-10 relative">Home</span> 
                         <span class="{{$strSpanClass}}"></span></a>

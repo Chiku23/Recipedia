@@ -6,26 +6,26 @@ $strInputClass = "bg-transparent block w-full p-2 text-gray-900 border border-gr
 @endphp
 
 <div class="registerWrapper !mt-12 w-full">
-    <div class="registerMain flex">
-        <div class="registerLeft w-1/2 text-6xl uppercase font-bold tracking-[3px] flex justify-center items-center">
+    <div class="registerMain flex flex-col sm:flex-row p-4">
+        <div class="registerLeft w-full sm:w-1/2 text-6xl uppercase font-bold tracking-[3px] flex justify-center items-center">
         </div>
-        <div class="registerRight w-1/2">
+        <div class="registerRight w-full sm:w-1/2">
             <div class="registerFormWrapper p-4 rounded-lg max-w-420 mx-auto shadow-lg">
                 <form action="{{Route('registerUser')}}" method="post" class="registerForm font-bold">
                     @csrf
-                    <div class="FormTitle text-4xl uppercase border-b-2 border-gray pb-2 text-center">Register</div>
+                    <div class="FormTitle text-2xl sm:text-4xl uppercase border-b-2 border-gray pb-2 text-center">Register</div>
                     <div class="registerFormFields flex flex-col my-8 mx-4">
-                        <label for="fullname" class="text-xl mb-2">Enter Your Name:</label>
+                        <label for="fullname" class="text-sm sm:text-xl mb-2">Enter Your Name:</label>
                         <input type="text" name="fullname" id="fullname" class="{{$strInputClass}}"/>
                         @error('fullname')
                             <span class="text-red-500">{{$message}}</span>
                         @enderror
-                        <label for="email" class="text-xl mb-2">Enter Your Email:</label>
+                        <label for="email" class="text-sm sm:text-xl my-2">Enter Your Email:</label>
                         <input type="text" name="email" id="email" class="{{$strInputClass}}"/>
                         @error('email')
                             <span class="text-red-500">{{$message}}</span>
                         @enderror
-                        <label for="password" class="text-xl my-2">Enter Your Password:</label>
+                        <label for="password" class="text-sm sm:text-xl my-2">Enter Your Password:</label>
                         <input type="password" name="password" id="password" class="{{$strInputClass}}"/>
                         @error('password')
                             <span class="text-red-500">{{$message}}</span>
